@@ -20,9 +20,7 @@ export default function Address({
         href={`https://goerli.voyager.online/contract/${address}`}
         passHref
       >
-        <Link color="gray.50" target="_blank">
-          {truncateAddress(address)}
-        </Link>
+        <Link target="_blank">{truncateAddress(address)}</Link>
       </NextLink>
     );
   }
