@@ -1,4 +1,4 @@
-import { Flex } from "@chakra-ui/react";
+import { Flex, Heading } from "@chakra-ui/react";
 import { useStarknetCall } from "@starknet-react/core";
 import type { NextPage } from "next";
 import { useMemo } from "react";
@@ -8,6 +8,7 @@ import { AliveButton } from "~/components/AliveButton";
 import { IncrementCounter } from "~/components/IncrementCounter";
 import { TransactionList } from "~/components/TransactionList";
 import { useCounterContract } from "~/hooks/counter";
+import SetHeirForm from "~/components/SetHeirForm";
 
 const Wallet: NextPage = () => {
   const { contract: counter } = useCounterContract();
@@ -26,14 +27,16 @@ const Wallet: NextPage = () => {
   }, [counterResult]);
 
   return (
-    <Flex as="main" direction="column" gap={10} p={5}>
+    <Flex as="main" direction="column" gap={5} p={5}>
+      <Heading>Showcase</Heading>
       <ConnectButton />
       <AliveButton />
-      <h2>Counter Contract</h2>
+      <SetHeirForm />
+      <Heading>Counter Contract</Heading>
       <p>Address: {counter?.address}</p>
       <p>Value: {counterValue}</p>
       <IncrementCounter />
-      <h2>Recent Transactions</h2>
+      <Heading>Recent Transactions</Heading>
       <TransactionList />
     </Flex>
   );
