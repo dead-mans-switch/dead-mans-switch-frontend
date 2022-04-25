@@ -8,7 +8,7 @@ import { AliveButton } from "~/components/AliveButton";
 import { IncrementCounter } from "~/components/IncrementCounter";
 import { TransactionList } from "~/components/TransactionList";
 import { useCounterContract } from "~/hooks/counter";
-import SetHeirForm from "~/components/SetHeirForm";
+import SetSwitch from "~/components/SetSwitch";
 
 const Wallet: NextPage = () => {
   const { contract: counter } = useCounterContract();
@@ -31,7 +31,7 @@ const Wallet: NextPage = () => {
       <Heading>Showcase</Heading>
       <ConnectButton />
       <AliveButton />
-      <SetHeirForm />
+      <SetSwitch />
       <Heading>Counter Contract</Heading>
       <p>Address: {counter?.address}</p>
       <p>Value: {counterValue}</p>
