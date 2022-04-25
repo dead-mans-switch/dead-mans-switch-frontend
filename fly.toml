@@ -1,4 +1,4 @@
-app = "dead-mans-switch-frontend-f956"
+app = "dead-mans-switch-frontend"
 kill_signal = "SIGINT"
 kill_timeout = 5
 processes = [ ]
