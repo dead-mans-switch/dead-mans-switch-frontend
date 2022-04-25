@@ -7,6 +7,6 @@ export function useDeadmanContract() {
   return useContract({
     abi: DeadmanAbi as Abi,
     address:
-      "0x0648739d3f478258fa6a2d0032ad97c951bff74020f2816b7bd0799eef2f9436",
+      "0x021ad88d4e09feee94541e75151b5a085bf052eb62563d36e8349751455a74c0",
   });
 }

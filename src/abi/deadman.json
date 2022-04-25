@@ -30,6 +30,17 @@
     {
         "data": [
             {
+                "name": "owner",
+                "type": "felt"
+            }
+        ],
+        "keys": [],
+        "name": "OwnerNotDead",
+        "type": "event"
+    },
+    {
+        "data": [
+            {
                 "name": "heir",
                 "type": "felt"
             },
@@ -45,6 +56,59 @@
         "keys": [],
         "name": "HeirRedeemed",
         "type": "event"
+    },
+    {
+        "data": [
+            {
+                "name": "heir",
+                "type": "felt"
+            },
+            {
+                "name": "owner",
+                "type": "felt"
+            },
+            {
+                "name": "delay",
+                "type": "felt"
+            }
+        ],
+        "keys": [],
+        "name": "HeirSet",
+        "type": "event"
+    },
+    {
+        "inputs": [
+            {
+                "name": "owner",
+                "type": "felt"
+            }
+        ],
+        "name": "time_until_death",
+        "outputs": [
+            {
+                "name": "time_left",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "owner",
+                "type": "felt"
+            }
+        ],
+        "name": "owner_last_seen",
+        "outputs": [
+            {
+                "name": "last_seen",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
     },
     {
         "inputs": [],
@@ -85,8 +149,25 @@
         "name": "delay_of",
         "outputs": [
             {
-                "name": "delayt",
+                "name": "delay",
                 "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "heir",
+                "type": "felt"
+            }
+        ],
+        "name": "get_allowance_for",
+        "outputs": [
+            {
+                "name": "allowance",
+                "type": "Uint256"
             }
         ],
         "stateMutability": "view",
