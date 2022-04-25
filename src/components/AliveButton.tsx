@@ -1,26 +1,40 @@
-import { Box, Button } from "@chakra-ui/react";
+import { Button, useToast } from "@chakra-ui/react";
 import { useStarknet, useStarknetInvoke } from "@starknet-react/core";
 import * as React from "react";
+
 import { useDeadmanContract } from "~/hooks/deadman";
+import Address from "~/components/Address";
 
 export function AliveButton() {
   const { account } = useStarknet();
   const { contract: deadman } = useDeadmanContract();
-  const { invoke, ...rest } = useStarknetInvoke({
+  const { invoke, loading, data } = useStarknetInvoke({
     contract: deadman,
     method: "alive",
   });
+  const toast = useToast();
+
+  React.useEffect(() => {
+    if (data) {
+      toast({
+        title: "Transaction completed",
+        description: <Address address={data} link={false} />,
+        status: "success",
+        duration: 9000,
+        isClosable: true,
+      });
+    }
+  }, [data]);
 
   return (
     <>
-      <Button onClick={() => invoke({ args: [] })} disabled={!account}>
+      <Button
+        onClick={() => invoke({ args: [] })}
+        disabled={!account}
+        isLoading={loading}
+      >
         Alive
       </Button>
-      <Box as="pre">
-        <Box as="code" color="white">
-          {JSON.stringify(rest, null, 2)}
-        </Box>
-      </Box>
     </>
   );
 }
