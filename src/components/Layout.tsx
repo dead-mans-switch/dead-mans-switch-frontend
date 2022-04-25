@@ -11,10 +11,10 @@ interface LayoutProps {
 
 function Navbar() {
   return (
-    <Flex as="nav" justify="space-between" align="center" mx={6}>
+    <Flex as="nav" justify="space-between" align="center" py={5} px={8}>
       <NextLink href="/" passHref>
         <Link>
-          <Logo height="60" />
+          <Logo height="50" />
         </Link>
       </NextLink>
       <ConnectButton />
