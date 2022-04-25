@@ -25,7 +25,7 @@ const theme = extendTheme({
 	styles: {
 		global: {
 			'html, body': {
-				color: 'yellow.100',
+				color: 'orange.100',
 				backgroundColor: 'gray.900',
 			},
 			button: { color: 'gray.900' },

@@ -7,6 +7,7 @@ import {
 	Image,
 	VStack,
 	HStack,
+	Grid,
 } from '@chakra-ui/react';
 import { SiGithub, SiTwitter, SiYoutube } from 'react-icons/si';
 import Logo from '~/components/Logo';
@@ -121,7 +122,7 @@ export default function Index() {
 					<Heading as='h3' size='md' mt={6} textAlign='center'>
 						How does it work?
 					</Heading>
-					<Flex gap={3} wrap='wrap'>
+					<Grid gap={3}>
 						<TutorialCard
 							imageSource='./DeadMansSwitch_Step1.jpg'
 							stepNumber={1}>
@@ -143,21 +144,17 @@ export default function Index() {
 							Your trusted address will be able to access your assets after the
 							timer elapses.
 						</TutorialCard>
-					</Flex>
+					</Grid>
 				</VStack>
-				<VStack w='full'>
-					<Heading as='h3' size='md' mt={8} textAlign='center'>
-						Get started
-					</Heading>
-					<Button
-						w='full'
-						mt={3}
-						h={16}
-						_hover={{ bg: '#feba57' }}
-						bgGradient='linear(to-br, #f79263, #e24b70)'>
-						Set dead man's switch
-					</Button>
-				</VStack>
+
+				<Button
+					w='full'
+					mt={8}
+					h={16}
+					_hover={{ bg: '#feba57' }}
+					bgGradient='linear(to-br, #f79263, #e24b70)'>
+					Set dead man's switch
+				</Button>
 			</Box>
 			<Footer />
 		</VStack>
