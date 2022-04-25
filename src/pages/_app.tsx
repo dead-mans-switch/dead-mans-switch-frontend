@@ -25,9 +25,10 @@ const theme = extendTheme({
 	styles: {
 		global: {
 			'html, body': {
-				color: 'gray.50',
+				color: 'yellow.100',
 				backgroundColor: 'gray.900',
 			},
+			button: { color: 'gray.900' },
 		},
 	},
 });

@@ -81,7 +81,10 @@ export default function Index() {
 						</Heading>
 					</HStack>
 					<Flex gap={6} mt={6} wrap='wrap' align='center'>
-						<Button h={16} bgGradient='linear(to-br, #f79263, #e24b70)'>
+						<Button
+							h={16}
+							bgGradient='linear(to-br, #f79263, #e24b70)'
+							_hover={{ bg: '#feba57' }}>
 							Set dead man's switch
 						</Button>
 						<Heading
@@ -150,6 +153,7 @@ export default function Index() {
 						w='full'
 						mt={3}
 						h={16}
+						_hover={{ bg: '#feba57' }}
 						bgGradient='linear(to-br, #f79263, #e24b70)'>
 						Set dead man's switch
 					</Button>
