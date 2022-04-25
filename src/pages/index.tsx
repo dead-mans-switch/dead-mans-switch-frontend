@@ -4,21 +4,17 @@ import {
 	Flex,
 	Heading,
 	Text,
-	Spacer,
 	Image,
 	VStack,
 	HStack,
 } from '@chakra-ui/react';
 import { SiGithub, SiTwitter, SiYoutube } from 'react-icons/si';
-
-function Logo() {
-	return <Text>Logo</Text>;
-}
+import Logo from '~/components/Logo';
 
 function Navbar() {
 	return (
-		<Flex as='nav' justify='space-between' mx={6}>
-			<Logo />
+		<Flex as='nav' justify='space-between' align='center' mx={6}>
+			<Logo height='60' />
 			<Button>Connect Wallet</Button>
 		</Flex>
 	);
@@ -52,7 +48,13 @@ function TutorialCard(props: TutorialCardProps) {
 			minW={60}
 			maxW={100}
 			padding={0}>
-			<Heading position='absolute' top={3} left={3} size='3xl'>
+			<Heading
+				position='absolute'
+				top={3}
+				left={3}
+				size='3xl'
+				color='red.700'
+				opacity='0.75'>
 				{props.stepNumber}
 			</Heading>
 			<Image w='full' borderTopRadius='2xl' h={40} src={props.imageSource} />
@@ -68,7 +70,7 @@ export default function Index() {
 				<Navbar />
 				<VStack mx={6}>
 					<HStack mt={6}>
-						<Logo />
+						<Logo height='150' />
 						<Heading as='h1' size='4xl'>
 							Dead Man's Switch
 						</Heading>
@@ -106,16 +108,24 @@ export default function Index() {
 						How does it work?
 					</Heading>
 					<Flex gap={3} wrap='wrap'>
-						<TutorialCard imageSource='' stepNumber={1}>
+						<TutorialCard
+							imageSource='./DeadMansSwitch_Step1.jpg'
+							stepNumber={1}>
 							Connect your wallet.
 						</TutorialCard>
-						<TutorialCard imageSource='' stepNumber={2}>
+						<TutorialCard
+							imageSource='./DeadMansSwitch_Step2.jpg'
+							stepNumber={2}>
 							Set your trusted address and the timer.
 						</TutorialCard>
-						<TutorialCard imageSource='' stepNumber={3}>
+						<TutorialCard
+							imageSource='./DeadMansSwitch_Step3.jpg'
+							stepNumber={3}>
 							Die.
 						</TutorialCard>
-						<TutorialCard imageSource='' stepNumber={4}>
+						<TutorialCard
+							imageSource='./DeadMansSwitch_Step4.jpg'
+							stepNumber={4}>
 							Your trusted address will be able to access your assets after the
 							timer elapses.
 						</TutorialCard>
