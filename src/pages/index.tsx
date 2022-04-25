@@ -1,40 +1,146 @@
-import { useStarknetCall } from '@starknet-react/core'
-import type { NextPage } from 'next'
-import { useMemo } from 'react'
-import { toBN } from 'starknet/dist/utils/number'
-import { ConnectWallet } from '~/components/ConnectWallet'
-import { IncrementCounter } from '~/components/IncrementCounter'
-import { TransactionList } from '~/components/TransactionList'
-import { useCounterContract } from '~/hooks/counter'
+import { useStarknetCall } from '@starknet-react/core';
+import type { NextPage } from 'next';
+import { useMemo } from 'react';
+import { toBN } from 'starknet/dist/utils/number';
+import { ConnectWallet } from '~/components/ConnectWallet';
+import { IncrementCounter } from '~/components/IncrementCounter';
+import { TransactionList } from '~/components/TransactionList';
+import { useCounterContract } from '~/hooks/counter';
 
-const Home: NextPage = () => {
-  const { contract: counter } = useCounterContract()
+import {
+	Box,
+	Button,
+	Flex,
+	Heading,
+	Text,
+	Spacer,
+	Image,
+	VStack,
+	HStack,
+} from '@chakra-ui/react';
+import { SiGithub, SiTwitter, SiYoutube } from 'react-icons/si';
 
-  const { data: counterResult } = useStarknetCall({
-    contract: counter,
-    method: 'counter',
-    args: [],
-  })
-
-  const counterValue = useMemo(() => {
-    if (counterResult && counterResult.length > 0) {
-      const value = toBN(counterResult[0])
-      return value.toString(10)
-    }
-  }, [counterResult])
-
-  return (
-    <div>
-      <h2>Wallet</h2>
-      <ConnectWallet />
-      <h2>Counter Contract</h2>
-      <p>Address: {counter?.address}</p>
-      <p>Value: {counterValue}</p>
-      <IncrementCounter />
-      <h2>Recent Transactions</h2>
-      <TransactionList />
-    </div>
-  )
+function Logo() {
+	return <Text>Logo</Text>;
 }
 
-export default Home
+function Navbar() {
+	return (
+		<Flex as='nav' justify='space-between'>
+			<Logo />
+			<Button>Connect Wallet</Button>
+		</Flex>
+	);
+}
+function Footer() {
+	return (
+		<Flex as='nav' justify='space-between' w='full' p={6}>
+			<HStack spacing={3}>
+				<SiGithub />
+				<SiTwitter />
+				<SiYoutube />
+			</HStack>
+			<Text align='center'>Built with ❤️ on top of Starknet and Argent X</Text>
+		</Flex>
+	);
+}
+
+interface TutorialCardProps {
+	children: string;
+	imageSource: string;
+	stepNumber: number;
+}
+function TutorialCard(props: TutorialCardProps) {
+	return (
+		<Box
+			position='relative'
+			border='1px'
+			p={3}
+			borderRadius='2xl'
+			w='full'
+			minW={60}
+			maxW={100}
+			padding={0}>
+			<Heading position='absolute' top={3} left={3} size='3xl'>
+				{props.stepNumber}
+			</Heading>
+			<Image w='full' borderTopRadius='2xl' h={40} src={props.imageSource} />
+			<Text m={3}>{props.children}</Text>
+		</Box>
+	);
+}
+
+export default function Index() {
+	return (
+		<VStack>
+			<Box as='header' m={6}>
+				<Navbar />
+				<HStack mt={6}>
+					<Logo />
+					<Heading as='h1' size='4xl'>
+						Dead Man's Switch
+					</Heading>
+				</HStack>
+				<Flex gap={6} mt={6} wrap='wrap' align='center'>
+					<Button h={16}>Set dead man's switch</Button>
+					<Heading as='h4' size='sm'>
+						Ensure that your loved ones get access to your assets <br /> in case
+						of your death.
+					</Heading>
+				</Flex>
+			</Box>
+			<Box
+				as='main'
+				border='1px'
+				p={6}
+				maxW='xl'
+				m={6}
+				mt={40}
+				borderRadius='3xl'>
+				<VStack>
+					<Heading as='h3' size='md' textAlign='center'>
+						What is Dead Man's Switch?
+					</Heading>
+					<Text maxW='xl' mt={3}>
+						Dead Man's Switch allows trusted accounts to access the assets in
+						your wallet in case your wallet has not been used for a long period
+						of time. You decide who gets your inheritance and how much much time
+						has to elapse before the dead man's switch triggers.
+					</Text>
+				</VStack>
+				<VStack>
+					<Heading as='h3' size='md' mt={6} textAlign='center'>
+						How does it work?
+					</Heading>
+					<Flex gap={3} wrap='wrap'>
+						<TutorialCard imageSource='' stepNumber={1}>
+							Connect your wallet.
+						</TutorialCard>
+						<Spacer />
+						<TutorialCard imageSource='' stepNumber={2}>
+							Set your trusted address and the timer.
+						</TutorialCard>
+						<Spacer />
+						<TutorialCard imageSource='' stepNumber={3}>
+							Die.
+						</TutorialCard>
+						<Spacer />
+						<TutorialCard imageSource='' stepNumber={4}>
+							Your trusted address will be able to access your assets after the
+							timer elapses.
+						</TutorialCard>
+					</Flex>
+				</VStack>
+				<VStack w='full'>
+					<Heading as='h3' size='md' mt={8} textAlign='center'>
+						Get started
+					</Heading>
+					<Button w='full' mt={3} h={16}>
+						Set dead man's switch
+					</Button>
+				</VStack>
+			</Box>
+			<Footer />
+		</VStack>
+	);
+}
