@@ -10,6 +10,7 @@ import {
 import { useStarknet } from "@starknet-react/core";
 
 import Layout from "~/components/Layout";
+import Redeem from "~/components/Redeem";
 import SetSwitch from "~/components/SetSwitch";
 
 export default function App(): JSX.Element {
@@ -28,7 +29,7 @@ export default function App(): JSX.Element {
                 <SetSwitch />
               </TabPanel>
               <TabPanel>
-                <p>two!</p>
+                <Redeem />
               </TabPanel>
             </TabPanels>
           </Tabs>
