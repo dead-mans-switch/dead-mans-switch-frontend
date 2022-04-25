@@ -1,12 +1,3 @@
-import { useStarknetCall } from '@starknet-react/core';
-import type { NextPage } from 'next';
-import { useMemo } from 'react';
-import { toBN } from 'starknet/dist/utils/number';
-import { ConnectWallet } from '~/components/ConnectWallet';
-import { IncrementCounter } from '~/components/IncrementCounter';
-import { TransactionList } from '~/components/TransactionList';
-import { useCounterContract } from '~/hooks/counter';
-
 import {
 	Box,
 	Button,
@@ -26,7 +17,7 @@ function Logo() {
 
 function Navbar() {
 	return (
-		<Flex as='nav' justify='space-between'>
+		<Flex as='nav' justify='space-between' mx={6}>
 			<Logo />
 			<Button>Connect Wallet</Button>
 		</Flex>
@@ -54,7 +45,7 @@ function TutorialCard(props: TutorialCardProps) {
 	return (
 		<Box
 			position='relative'
-			border='1px'
+			bg='gray.700'
 			p={3}
 			borderRadius='2xl'
 			w='full'
@@ -73,25 +64,27 @@ function TutorialCard(props: TutorialCardProps) {
 export default function Index() {
 	return (
 		<VStack>
-			<Box as='header' m={6}>
+			<Box as='header' m={6} w='full'>
 				<Navbar />
-				<HStack mt={6}>
-					<Logo />
-					<Heading as='h1' size='4xl'>
-						Dead Man's Switch
-					</Heading>
-				</HStack>
-				<Flex gap={6} mt={6} wrap='wrap' align='center'>
-					<Button h={16}>Set dead man's switch</Button>
-					<Heading as='h4' size='sm'>
-						Ensure that your loved ones get access to your assets <br /> in case
-						of your death.
-					</Heading>
-				</Flex>
+				<VStack mx={6}>
+					<HStack mt={6}>
+						<Logo />
+						<Heading as='h1' size='4xl'>
+							Dead Man's Switch
+						</Heading>
+					</HStack>
+					<Flex gap={6} mt={6} wrap='wrap' align='center'>
+						<Button h={16}>Set dead man's switch</Button>
+						<Heading as='h4' size='sm'>
+							Ensure that your loved ones get access to your assets <br /> in
+							case of your death.
+						</Heading>
+					</Flex>
+				</VStack>
 			</Box>
 			<Box
 				as='main'
-				border='1px'
+				bg='gray.800'
 				p={6}
 				maxW='xl'
 				m={6}
@@ -101,7 +94,7 @@ export default function Index() {
 					<Heading as='h3' size='md' textAlign='center'>
 						What is Dead Man's Switch?
 					</Heading>
-					<Text maxW='xl' mt={3}>
+					<Text maxW='xl' mt={3} color='text'>
 						Dead Man's Switch allows trusted accounts to access the assets in
 						your wallet in case your wallet has not been used for a long period
 						of time. You decide who gets your inheritance and how much much time
@@ -116,15 +109,12 @@ export default function Index() {
 						<TutorialCard imageSource='' stepNumber={1}>
 							Connect your wallet.
 						</TutorialCard>
-						<Spacer />
 						<TutorialCard imageSource='' stepNumber={2}>
 							Set your trusted address and the timer.
 						</TutorialCard>
-						<Spacer />
 						<TutorialCard imageSource='' stepNumber={3}>
 							Die.
 						</TutorialCard>
-						<Spacer />
 						<TutorialCard imageSource='' stepNumber={4}>
 							Your trusted address will be able to access your assets after the
 							timer elapses.
