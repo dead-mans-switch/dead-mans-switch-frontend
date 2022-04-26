@@ -17,7 +17,7 @@ export function AliveButton() {
   React.useEffect(() => {
     if (data) {
       toast({
-        title: "Transaction completed",
+        title: "Transaction sent",
         description: <Address address={data} link={false} />,
         status: "success",
         duration: 9000,
@@ -33,7 +33,7 @@ export function AliveButton() {
         disabled={!account}
         isLoading={loading}
       >
-        Alive
+        I'm alive!
       </Button>
     </>
   );

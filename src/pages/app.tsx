@@ -8,13 +8,15 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { useStarknet } from "@starknet-react/core";
+import * as React from "react";
 
 import Layout from "~/components/Layout";
+import Manage from "~/components/Manage";
 import Redeem from "~/components/Redeem";
-import SetSwitch from "~/components/SetSwitch";
 
 export default function App(): JSX.Element {
   const { account } = useStarknet();
+
   if (account) {
     return (
       <Layout>
@@ -26,7 +28,7 @@ export default function App(): JSX.Element {
             </TabList>
             <TabPanels>
               <TabPanel>
-                <SetSwitch />
+                <Manage />
               </TabPanel>
               <TabPanel>
                 <Redeem />

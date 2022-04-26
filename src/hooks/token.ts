@@ -1,11 +1,12 @@
-import { useContract } from '@starknet-react/core'
-import { Abi } from 'starknet'
+import { useContract } from "@starknet-react/core";
+import { Abi } from "starknet";
 
-import Erc20Abi from '~/abi/erc20.json'
+import TokenAbi from "~/abi/token.json";
 
 export function useTokenContract() {
   return useContract({
-    abi: Erc20Abi as Abi,
-    address: '0x07394cbe418daa16e42b87ba67372d4ab4a5df0b05c6e554d158458ce245bc10',
-  })
+    abi: TokenAbi as Abi,
+    address:
+      "0x029260ce936efafa6d0042bc59757a653e3f992b97960c1c4f8ccd63b7a90136",
+  });
 }

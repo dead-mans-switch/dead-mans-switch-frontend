@@ -1,5 +1,5 @@
 import { Flex, Heading } from "@chakra-ui/react";
-import { useStarknetCall } from "@starknet-react/core";
+import { useStarknetCall, useStarknet } from "@starknet-react/core";
 import type { NextPage } from "next";
 import { useMemo } from "react";
 import { toBN } from "starknet/dist/utils/number";
@@ -13,6 +13,7 @@ import SetSwitch from "~/components/SetSwitch";
 const Wallet: NextPage = () => {
   const { contract: counter } = useCounterContract();
 
+  const { connect } = useStarknet();
   const { data: counterResult } = useStarknetCall({
     contract: counter,
     method: "counter",

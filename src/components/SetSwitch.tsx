@@ -8,7 +8,13 @@ import {
   Input,
   Text,
 } from "@chakra-ui/react";
+import { useStarknet, useStarknetInvoke } from "@starknet-react/core";
 import * as React from "react";
+import { toBN } from "starknet/dist/utils/number";
+import { bnToUint256 } from "starknet/dist/utils/uint256";
+
+import { address as deadmanAddress, useDeadmanContract } from "~/hooks/deadman";
+import { useTokenContract } from "~/hooks/token";
 
 function isValid(address: string) {
   return /^0x[0-9a-f]{64}$/.test(address);
@@ -16,7 +22,20 @@ function isValid(address: string) {
 
 export default function SetSwitch({}): JSX.Element {
   const [address, setAddress] = React.useState("");
+  const [delay, setDelay] = React.useState("");
   const [error, setError] = React.useState("");
+
+  const { contract: token } = useTokenContract();
+  const { invoke: approveToken } = useStarknetInvoke({
+    contract: token,
+    method: "approve",
+  });
+
+  const { contract: deadman } = useDeadmanContract();
+  const { invoke: setHeir } = useStarknetInvoke({
+    contract: deadman,
+    method: "set_heir",
+  });
 
   return (
     <Flex direction="column" gap={5}>
@@ -38,13 +57,36 @@ export default function SetSwitch({}): JSX.Element {
         />
         <FormErrorMessage>{error}</FormErrorMessage>
       </FormControl>
+      <FormControl>
+        <FormLabel htmlFor="delay">Time to redeamable (seconds)</FormLabel>
+        <Input
+          id="delay"
+          value={delay}
+          onChange={(e) => setDelay(e.target.value)}
+          placeholder="3600"
+        />
+      </FormControl>
       <Button
         onClick={() => {
-          if (!isValid(address)) {
-            setError("Invalid address");
-          } else {
-            setError("");
-          }
+          approveToken({
+            args: [deadmanAddress, bnToUint256(toBN(1000))],
+          }).then((...args) => console.log(...args));
+        }}
+      >
+        Approve
+      </Button>
+      <Button
+        onClick={() => {
+          // if (!isValid(address)) {
+          //   setError("Invalid address");
+          // } else {
+          //   setError("");
+          //   invoke({ args: [address, delay] });
+          // }
+          console.log("Calling", { address, delay });
+          approveToken({
+            args: [deadmanAddress, bnToUint256(toBN(1000))],
+          }).then(() => setHeir({ args: [address, delay] }));
         }}
       >
         Activate switch

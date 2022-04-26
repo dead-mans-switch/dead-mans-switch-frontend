@@ -159,7 +159,7 @@
     {
         "inputs": [
             {
-                "name": "heir",
+                "name": "owner",
                 "type": "felt"
             }
         ],
