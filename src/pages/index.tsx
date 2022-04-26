@@ -9,6 +9,8 @@ import {
 	HStack,
 	Grid,
 } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
+import React, { MouseEvent } from 'react';
 
 import Layout from '~/components/Layout';
 import Logo from '~/components/Logo';
@@ -45,6 +47,11 @@ function TutorialCard(props: TutorialCardProps) {
 }
 
 export default function Index() {
+	const router = useRouter();
+	const handleClick = (e: MouseEvent) => {
+		e.preventDefault();
+		router.push('/app');
+	};
 	return (
 		<Layout>
 			<VStack>
@@ -64,7 +71,8 @@ export default function Index() {
 							<Button
 								h={16}
 								bgGradient='linear(to-br, #f79263, #e24b70)'
-								_hover={{ bg: '#feba57' }}>
+								_hover={{ bg: '#feba57' }}
+								onClick={handleClick}>
 								Set dead man's switch
 							</Button>
 							<Heading
@@ -134,7 +142,8 @@ export default function Index() {
 						mt={12}
 						h={16}
 						_hover={{ bg: '#feba57' }}
-						bgGradient='linear(to-br, #f79263, #e24b70)'>
+						bgGradient='linear(to-br, #f79263, #e24b70)'
+						onClick={handleClick}>
 						Set dead man's switch
 					</Button>
 				</Box>

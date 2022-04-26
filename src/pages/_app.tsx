@@ -31,9 +31,7 @@ const theme = extendTheme({
 			},
 			button: {
 				color: 'gray.900',
-				backgroundColor: 'red.500',
-				backgroundImage: 'linear-gradient(to right, red.500, orange.500)',
-				backgroundGradient: 'linear(to-br, #f79263, #e24b70',
+				backgroundColor: 'gray.400',
 			},
 		},
 	},
