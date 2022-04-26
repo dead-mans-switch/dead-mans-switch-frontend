@@ -9,6 +9,10 @@ import {
   Text,
 } from "@chakra-ui/react";
 import * as React from "react";
+import { useStarknet, useStarknetInvoke } from "@starknet-react/core";
+import { toBN } from "starknet/dist/utils/number";
+import { bnToUint256 } from "starknet/dist/utils/uint256";
+import { address as deadmanAddress, useDeadmanContract } from "~/hooks/deadman";
 
 function isValid(address: string) {
   return /^0x[0-9a-f]{64}$/.test(address);
@@ -17,6 +21,12 @@ function isValid(address: string) {
 export default function Redeem({}): JSX.Element {
   const [address, setAddress] = React.useState("");
   const [error, setError] = React.useState("");
+
+  const { contract: deadman } = useDeadmanContract();
+  const { invoke: redeem } = useStarknetInvoke({
+    contract: deadman,
+    method: "redeem",
+  });
 
   return (
     <Flex direction="column" gap={5}>
@@ -39,11 +49,12 @@ export default function Redeem({}): JSX.Element {
       </FormControl>
       <Button
         onClick={() => {
-          if (!isValid(address)) {
-            setError("Invalid address");
-          } else {
-            setError("");
-          }
+          // if (!isValid(address)) {
+          //   setError("Invalid address");
+          // } else {
+          //   setError("");
+          // }
+          redeem({ args: [address] });
         }}
       >
         Redeem

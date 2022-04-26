@@ -68,15 +68,6 @@ export default function SetSwitch({}): JSX.Element {
       </FormControl>
       <Button
         onClick={() => {
-          approveToken({
-            args: [deadmanAddress, bnToUint256(toBN(1000))],
-          }).then((...args) => console.log(...args));
-        }}
-      >
-        Approve
-      </Button>
-      <Button
-        onClick={() => {
           // if (!isValid(address)) {
           //   setError("Invalid address");
           // } else {

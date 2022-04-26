@@ -4,7 +4,7 @@ import { Abi } from "starknet";
 import DeadmanAbi from "~/abi/deadman.json";
 
 export const address =
-  "0x07fd50e5c31a3c123a124021359c46084947e924cf00378c6c79bde75f36e84e";
+  "0x06401db351aedddbced1f2711083334ae911839cc65a682aa737302bdbecdc58";
 
 export function useDeadmanContract() {
   return useContract({
