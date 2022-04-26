@@ -49,9 +49,9 @@ export default function Index() {
 		<Layout>
 			<VStack>
 				<Box as='header' m={6} w='full'>
-					<VStack mx={6}>
-						<HStack mt={6}>
-							<Logo height='150' />
+					<VStack mx={6} gap={12}>
+						<HStack mt={6} gap={4}>
+							<Logo height='100' />
 							<Heading
 								as='h1'
 								size='4xl'
@@ -87,10 +87,10 @@ export default function Index() {
 					mt={40}
 					borderRadius='3xl'>
 					<VStack>
-						<Heading as='h3' size='md' textAlign='center'>
+						<Heading as='h3' size='md' mt={4} textAlign='center'>
 							What is Dead Man's Switch?
 						</Heading>
-						<Text maxW='xl' mt={3} color='text'>
+						<Text maxW='xl' mt={4} color='text'>
 							Dead Man's Switch allows trusted accounts to access the assets in
 							your wallet in case your wallet has not been used for a long
 							period of time. You decide who gets your inheritance and how much
@@ -98,10 +98,13 @@ export default function Index() {
 						</Text>
 					</VStack>
 					<VStack>
-						<Heading as='h3' size='md' mt={6} textAlign='center'>
+						<Heading as='h3' size='md' mt={8} mb={4} textAlign='center'>
 							How does it work?
 						</Heading>
-						<Grid gap={3}>
+						<Grid
+							gap={4}
+							templateRows='repeat(2, 1fr)'
+							templateColumns='repeat(2, 1fr)'>
 							<TutorialCard
 								imageSource='./DeadMansSwitch_Step1.jpg'
 								stepNumber={1}>
@@ -128,7 +131,7 @@ export default function Index() {
 
 					<Button
 						w='full'
-						mt={8}
+						mt={12}
 						h={16}
 						_hover={{ bg: '#feba57' }}
 						bgGradient='linear(to-br, #f79263, #e24b70)'>
