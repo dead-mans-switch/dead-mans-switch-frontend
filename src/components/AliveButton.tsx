@@ -1,40 +1,42 @@
-import { Button, useToast } from "@chakra-ui/react";
-import { useStarknet, useStarknetInvoke } from "@starknet-react/core";
-import * as React from "react";
+import { Button, useToast } from '@chakra-ui/react';
+import { useStarknet, useStarknetInvoke } from '@starknet-react/core';
+import * as React from 'react';
 
-import { useDeadmanContract } from "~/hooks/deadman";
-import Address from "~/components/Address";
+import { useDeadmanContract } from '~/hooks/deadman';
+import Address from '~/components/Address';
 
 export function AliveButton() {
-  const { account } = useStarknet();
-  const { contract: deadman } = useDeadmanContract();
-  const { invoke, loading, data } = useStarknetInvoke({
-    contract: deadman,
-    method: "alive",
-  });
-  const toast = useToast();
+	const { account } = useStarknet();
+	const { contract: deadman } = useDeadmanContract();
+	const { invoke, loading, data } = useStarknetInvoke({
+		contract: deadman,
+		method: 'alive',
+	});
+	const toast = useToast();
 
-  React.useEffect(() => {
-    if (data) {
-      toast({
-        title: "Transaction sent",
-        description: <Address address={data} link={false} />,
-        status: "success",
-        duration: 9000,
-        isClosable: true,
-      });
-    }
-  }, [data]);
+	React.useEffect(() => {
+		if (data) {
+			toast({
+				title: 'Transaction sent',
+				description: <Address address={data} link={false} />,
+				status: 'success',
+				duration: 9000,
+				isClosable: true,
+			});
+		}
+	}, [data]);
 
-  return (
-    <>
-      <Button
-        onClick={() => invoke({ args: [] })}
-        disabled={!account}
-        isLoading={loading}
-      >
-        I'm alive!
-      </Button>
-    </>
-  );
+	return (
+		<>
+			<Button
+				h={16}
+				_hover={{ bg: '#feba57' }}
+				bgGradient='linear(to-br, #f79263, #e24b70)'
+				onClick={() => invoke({ args: [] })}
+				disabled={!account}
+				isLoading={loading}>
+				I'm alive!
+			</Button>
+		</>
+	);
 }
