@@ -44,9 +44,10 @@ export default function SetSwitch({}): JSX.Element {
 				The dead man's switch will trigger after the amount of seconds you input
 				below. To avoid triggering the switch, you will need to return to this
 				page and click an "I'm alive!" button that will appear once you have
-				activated a timer. Once the chosen amount of time has elapsed, the
-				switch will trigger and the chosen addresses will gain access to the
-				assets in your wallet.
+				activated a timer – it will reset the timer. Once the chosen amount of
+				time has elapsed, the switch will trigger and the chosen addresses will
+				gain access to the assets in your wallet. You can edit the switch
+				anytime.
 			</Text>
 			<FormControl isInvalid={error !== ''}>
 				<FormLabel htmlFor='address'>Trusted address</FormLabel>
