@@ -41,11 +41,12 @@ export default function SetSwitch({}): JSX.Element {
 		<Flex direction='column' gap={5}>
 			<Heading>Set dead man's switch</Heading>
 			<Text>
-				The dead man's switch will trigger after <em>2 years</em>. Every time
-				you interact with your wallet, this timer will reset. Once the chosen
-				amount of time has elapsed without any wallet activity, the switch will
-				trigger and the chosen addresses will gain access to the assets in your
-				wallet.
+				The dead man's switch will trigger after the amount of seconds you input
+				below. To avoid triggering the switch, you will need to return to this
+				page and click an "I'm alive!" button that will appear once you have
+				activated a timer. Once the chosen amount of time has elapsed, the
+				switch will trigger and the chosen addresses will gain access to the
+				assets in your wallet.
 			</Text>
 			<FormControl isInvalid={error !== ''}>
 				<FormLabel htmlFor='address'>Trusted address</FormLabel>
