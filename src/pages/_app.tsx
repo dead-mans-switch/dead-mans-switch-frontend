@@ -2,6 +2,7 @@ import type { AppProps } from 'next/app';
 import NextHead from 'next/head';
 import { InjectedConnector, StarknetProvider } from '@starknet-react/core';
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
+import { DefaultSeo } from 'next-seo';
 
 import { Global } from '@emotion/react';
 
@@ -28,7 +29,12 @@ const theme = extendTheme({
 				color: 'orange.100',
 				backgroundColor: 'gray.900',
 			},
-			button: { color: 'gray.900' },
+			button: {
+				color: 'gray.900',
+				backgroundColor: 'red.500',
+				backgroundImage: 'linear-gradient(to right, red.500, orange.500)',
+				backgroundGradient: 'linear(to-br, #f79263, #e24b70',
+			},
 		},
 	},
 });
@@ -37,14 +43,35 @@ function MyApp({ Component, pageProps }: AppProps) {
 	const connectors = [new InjectedConnector()];
 
 	return (
-		<StarknetProvider autoConnect connectors={connectors}>
-			<ChakraProvider theme={theme}>
-				<NextHead>
-					<title>Dead Man's Switch</title>
-				</NextHead>
-				<Component {...pageProps} />
-			</ChakraProvider>
-		</StarknetProvider>
+		<>
+			<DefaultSeo
+				defaultTitle='Deadman.me'
+				description='Make sure that your loved ones can get your stuff once you hit the curb.
+      '
+				openGraph={{
+					type: 'website',
+					locale: 'en',
+					url: 'https://deadman.me',
+					site_name: 'Deadman.me',
+					images: [
+						{
+							url: `~/public/site-preview.png`,
+							width: 1728,
+							height: 972,
+						},
+					],
+				}}
+			/>
+
+			<StarknetProvider autoConnect connectors={connectors}>
+				<ChakraProvider theme={theme}>
+					<NextHead>
+						<title>Dead Man's Switch</title>
+					</NextHead>
+					<Component {...pageProps} />
+				</ChakraProvider>
+			</StarknetProvider>
+		</>
 	);
 }
 
